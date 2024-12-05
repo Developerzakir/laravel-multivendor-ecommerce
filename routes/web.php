@@ -38,10 +38,14 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::controller(AdminController::class)->group(function () {
         Route::get('admin/dashboard', 'adminDashboard')->name('admin.dashboard'); 
         Route::get('admin/logout', 'adminLogout')->name('admin.logout'); 
-        Route::get('admin/login', 'adminLogin')->name('admin.login'); 
+        Route::get('admin/profile', 'adminProfile')->name('admin.profile'); 
+        Route::post('/admin/profile/store', 'adminProfileStore')->name('admin.profile.store');
     });
 
 });
+
+//admin login route
+Route::get('admin/login', [AdminController::class, 'adminLogin']); 
 
 //Vendor Route
 Route::middleware(['auth','role:vendor'])->group(function(){
