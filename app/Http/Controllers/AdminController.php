@@ -45,8 +45,14 @@ class AdminController extends Controller
             $data['photo'] = $filename;
         }
         $data->save();
-        return redirect()->back();
-        
+
+        $notification = array(
+            'message' => 'Admin Profile Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+
     } // End adminProfileStore Mehtod 
 
     public function adminLogout(Request $request)
