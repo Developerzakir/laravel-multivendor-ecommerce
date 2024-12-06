@@ -57,5 +57,9 @@ Route::middleware(['auth','role:vendor'])->group(function(){
     Route::controller(VendorController::class)->group(function () {
         Route::get('vendor/dashboard', 'vendorDashboard')->name('vendor.dashboard');
         Route::get('/vendor/logout', 'vendorDestroy')->name('vendor.logout');
+        Route::get('/vendor/profile', 'vendorProfile')->name('vendor.profile');
+        Route::post('/vendor/profile/store', 'vendorProfileStore')->name('vendor.profile.store');
+        Route::get('/vendor/change/password', 'vendorChangePassword')->name('vendor.change.password');
+        Route::post('/vendor/update/password', 'vendorUpdatePassword')->name('vendor.update.password');
    });
 });
