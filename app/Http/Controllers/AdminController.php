@@ -76,6 +76,7 @@ class AdminController extends Controller
         ]);
         return back()->with("status", " Password Changed Successfully");
     } // End adminUpdatePassword Mehtod 
+    
 
     public function adminLogout(Request $request)
     {
