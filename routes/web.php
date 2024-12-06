@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -63,3 +62,7 @@ Route::middleware(['auth','role:vendor'])->group(function(){
         Route::post('/vendor/update/password', 'vendorUpdatePassword')->name('vendor.update.password');
    });
 });
+
+
+// Frontend Route all 
+Route::get('/', [FrontEndController::class,'index'])->name('front.index');
