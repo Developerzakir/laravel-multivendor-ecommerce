@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Multivendor E-commerce Shop</title>
+    <title>Login Page Multivendor E-commerce Shop</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,7 +27,7 @@
             <div class="container">
                 <div class="breadcrumb">
                     <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                    <span></span> Pages <span></span> My Account
+                     <span></span> My Account
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
                                     <div class="padding_eight_all bg-white">
                                         <div class="heading_s1">
                                             <h1 class="mb-5">Login</h1>
-                                            <p class="mb-30">Don't have an account? <a href="page-register.html">Create here</a></p>
+                                            <p class="mb-30">Don't have an account? <a href="{{route('register')}}">Create here</a></p>
                                         </div>
                                         <form method="POST" action="{{ route('login') }}">
                                             @csrf
