@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function() {
     Route::controller(UserController::class)->group(function () {
         Route::get('/dashboard', 'userDashboard')->name('dashboard');
         Route::post('/user/profile/store','userProfileStore')->name('user.profile.store');
+        Route::get('/user/logout','userLogout')->name('user.logout');
     });
 }); // Gorup Milldeware End
 
