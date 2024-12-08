@@ -47,6 +47,7 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <h3 class="mb-0">Hello, {{Auth::user()->name}}</h3>
+                                        <img src="{{ (!empty($userData->photo)) ? url('upload/user_images/'.$userData->photo):url('upload/no_image.jpg') }}" alt="User" class="rounded-circle p-1 bg-primary mt-3" width="110" id="showImage">
                                     </div>
                                     <div class="card-body">
                                         <p>
