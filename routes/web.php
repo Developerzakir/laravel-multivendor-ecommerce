@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontEndController;
@@ -54,6 +55,12 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::get('/admin/change/password', 'adminChangePassword')->name('admin.change.password');
         Route::post('/admin/update/password', 'AdminUpdatePassword')->name('admin.update.password');
     });
+
+     // Brand All Route 
+        Route::controller(BrandController::class)->group(function(){
+            Route::get('/all/brand' , 'allBrand')->name('all.brand');
+            Route::get('/add/brand' , 'addBrand')->name('add.brand');
+        });
 
 });
 

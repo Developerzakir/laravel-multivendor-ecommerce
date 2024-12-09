@@ -15,4 +15,7 @@
 <link rel="stylesheet" href="{{asset('backend/assets/css/semi-dark.css')}}" />
 <link rel="stylesheet" href="{{asset('backend/assets/css/header-colors.css')}}" />
 
+<!-- DataTable -->
+<link href="{{ asset('backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
+
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
