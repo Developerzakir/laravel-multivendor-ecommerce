@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontEndController;
+use App\Http\Controllers\SubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,16 @@ Route::middleware(['auth','role:admin'])->group(function(){
      // Category All Route 
         Route::controller(CategoryController::class)->group(function(){
             Route::get('/all/category' , 'allCategory')->name('all.category');
+            Route::get('/add/category' , 'addCategory')->name('add.category');
+            Route::post('/store/category' , 'storeCategory')->name('store.category');
+            Route::get('/edit/category/{id}' , 'editCategory')->name('edit.category');
+            Route::post('/update/category' , 'updateCategory')->name('update.category');
+            Route::get('/delete/category/{id}' , 'deleteCategory')->name('delete.category');
+        });
+
+     // Sub Category All Route 
+        Route::controller(SubCategoryController::class)->group(function(){
+            Route::get('/all/subcategory' , 'allSubCategory')->name('all.subcategory');
             Route::get('/add/category' , 'addCategory')->name('add.category');
             Route::post('/store/category' , 'storeCategory')->name('store.category');
             Route::get('/edit/category/{id}' , 'editCategory')->name('edit.category');
