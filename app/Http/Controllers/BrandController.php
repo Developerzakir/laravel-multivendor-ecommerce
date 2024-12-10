@@ -76,7 +76,7 @@ class BrandController extends Controller
         } // end else
     }// End Method 
 
-    public function DeleteBrand($id){
+    public function deleteBrand($id){
         $brand = Brand::findOrFail($id);
         $img = $brand->brand_image;
         unlink($img ); 
