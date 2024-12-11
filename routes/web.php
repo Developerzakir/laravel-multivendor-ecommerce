@@ -94,9 +94,12 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/active/vendor' , 'activeVendor')->name('active.vendor');
             Route::get('/inactive/vendor/details/{id}' , 'inactiveVendorDetails')->name('inactive.vendor.details');
             Route::post('/active/vendor/approve' , 'inactiveVendorApprove')->name('inactive.vendor.approve'); 
-            
+
+            // Route::get('/active/vendor/details/{id}' , 'activeVendorDetails')->name('active.vendor.details');
+            // Route::post('/active/vendor/disapprove' , 'activeVendorDisApprove')->name('active.vendor.disapprove'); 
+
             Route::get('/active/vendor/details/{id}' , 'activeVendorDetails')->name('active.vendor.details');
-            Route::post('/active/vendor/disapprove' , 'activeVendorDisApprove')->name('active.vendor.disapprove');   
+            Route::post('/inactive/vendor/approve' , 'activeVendorDisApprove')->name('active.vendor.disapprove');  
         });
 
 });

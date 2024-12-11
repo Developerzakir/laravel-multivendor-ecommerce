@@ -126,6 +126,7 @@ class AdminController extends Controller
 
     }// End Mehtod
 
+
     public function activeVendorDisApprove(Request $request){
         $verdor_id = $request->id;
         $user = User::findOrFail($verdor_id)->update([
