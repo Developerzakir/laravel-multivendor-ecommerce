@@ -89,5 +89,54 @@ class AdminController extends Controller
         return redirect('/admin/login');
     } //End adminLogout method
 
+    public function inactiveVendor()
+    {
+        $inActiveVendor = User::where('status','inactive')->where('role','vendor')->latest()->get();
+        return view('admin.vendor.inactive_vendor',compact('inActiveVendor'));
+    }// End Mehtod 
+
+    public function activeVendor()
+    {
+        $ActiveVendor = User::where('status','active')->where('role','vendor')->latest()->get();
+        return view('admin.vendor.active_vendor',compact('ActiveVendor'));
+    }// End Mehtod 
+
+    public function inactiveVendorDetails($id)
+    {
+        $inactiveVendorDetails = User::findOrFail($id);
+        return view('admin.vendor.inactive_vendor_details',compact('inactiveVendorDetails'));
+    }// End Mehtod 
+
+    public function inactiveVendorApprove(Request $request){
+        $verdor_id = $request->id;
+        $user = User::findOrFail($verdor_id)->update([
+            'status' => 'active',
+        ]);
+        $notification = array(
+            'message' => 'Vendor Active Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('active.vendor')->with($notification);
+    }// End Mehtod 
+
+    public function activeVendorDetails($id)
+    {
+        $activeVendorDetails = User::findOrFail($id);
+        return view('admin.vendor.active_vendor_details',compact('activeVendorDetails'));
+
+    }// End Mehtod
+
+    public function activeVendorDisApprove(Request $request){
+        $verdor_id = $request->id;
+        $user = User::findOrFail($verdor_id)->update([
+            'status' => 'inactive',
+        ]);
+        $notification = array(
+            'message' => 'Vendor InActive Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('inactive.vendor')->with($notification);
+    }// End Mehtod 
+
    
 }

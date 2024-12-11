@@ -88,6 +88,17 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/delete/subcategory/{id}' , 'deleteSubCategory')->name('delete.subcategory');
         });
 
+         // Vendor Active and Inactive All Route 
+        Route::controller(AdminController::class)->group(function(){
+            Route::get('/inactive/vendor' , 'inactiveVendor')->name('inactive.vendor');
+            Route::get('/active/vendor' , 'activeVendor')->name('active.vendor');
+            Route::get('/inactive/vendor/details/{id}' , 'inactiveVendorDetails')->name('inactive.vendor.details');
+            Route::post('/active/vendor/approve' , 'inactiveVendorApprove')->name('inactive.vendor.approve'); 
+            
+            Route::get('/active/vendor/details/{id}' , 'activeVendorDetails')->name('active.vendor.details');
+            Route::post('/active/vendor/disapprove' , 'activeVendorDisApprove')->name('active.vendor.disapprove');   
+        });
+
 });
 
 //admin login route
