@@ -4,9 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\SubCategoryController;
 
@@ -94,12 +95,15 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/active/vendor' , 'activeVendor')->name('active.vendor');
             Route::get('/inactive/vendor/details/{id}' , 'inactiveVendorDetails')->name('inactive.vendor.details');
             Route::post('/active/vendor/approve' , 'inactiveVendorApprove')->name('inactive.vendor.approve'); 
-
-            // Route::get('/active/vendor/details/{id}' , 'activeVendorDetails')->name('active.vendor.details');
-            // Route::post('/active/vendor/disapprove' , 'activeVendorDisApprove')->name('active.vendor.disapprove'); 
-
             Route::get('/active/vendor/details/{id}' , 'activeVendorDetails')->name('active.vendor.details');
             Route::post('/inactive/vendor/approve' , 'activeVendorDisApprove')->name('active.vendor.disapprove');  
+        });
+
+         // Product All Route 
+        Route::controller(ProductController::class)->group(function(){
+            Route::get('/all/product' , 'allProduct')->name('all.product');
+            // Route::get('/add/subcategory' , 'addSubCategory')->name('add.subcategory');
+            
         });
 
 });
