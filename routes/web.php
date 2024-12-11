@@ -102,7 +102,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
          // Product All Route 
         Route::controller(ProductController::class)->group(function(){
             Route::get('/all/product' , 'allProduct')->name('all.product');
-            // Route::get('/add/subcategory' , 'addSubCategory')->name('add.subcategory');
+            Route::get('/add/product' , 'addProduct')->name('add.product');
             
         });
 

@@ -54,3 +54,29 @@
 		  } );
 </script>
 <!--Datatable-->
+
+
+<script src="{{ asset('backend/assets/plugins/input-tags/js/tagsinput.js') }}"></script>
+
+{{-- <script src='https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js' referrerpolicy="origin">
+</script>
+
+<script>
+	tinymce.init({
+	  selector: '#mytextarea'
+	});
+</script> --}}
+
+<!-- Place the first <script> tag in your HTML's <head> -->
+	<script src="https://cdn.tiny.cloud/1/8fai9pbxzi4qrv4ijrbj7cmdep8quwby2p1yo0li32n829jj/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+	<!-- Place the following <script> and <textarea> tags your HTML's <body> -->
+	<script>
+	  tinymce.init({
+		selector: '#mytextarea',
+		plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+		toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+		height: 400 ,
+	  });
+	</script>
+	
