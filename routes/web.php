@@ -94,7 +94,12 @@ Route::middleware(['auth','role:admin'])->group(function(){
 Route::get('admin/login', [AdminController::class, 'adminLogin']); 
 
 //vendor login route
-Route::get('/vendor/login', [VendorController::class, 'vendorLogin']);
+Route::get('/vendor/login', [VendorController::class, 'vendorLogin'])->name('vendor.login');
+
+
+//become vendor route
+Route::get('/become/vendor', [VendorController::class, 'becomeVendor'])->name('become.vendor');
+Route::post('/vendor/register', [VendorController::class, 'vendorRegister'])->name('vendor.register');
 
 //Vendor Route
 Route::middleware(['auth','role:vendor'])->group(function(){
