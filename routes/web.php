@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,10 +120,10 @@ Route::middleware(['auth','role:admin'])->group(function(){
 });
 
 //admin login route
-Route::get('admin/login', [AdminController::class, 'adminLogin']); 
+Route::get('admin/login', [AdminController::class, 'adminLogin'])->middleware(RedirectIfAuthenticated::class);; 
 
 //vendor login route
-Route::get('/vendor/login', [VendorController::class, 'vendorLogin'])->name('vendor.login');
+Route::get('/vendor/login', [VendorController::class, 'vendorLogin'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);;
 
 
 //become vendor route
