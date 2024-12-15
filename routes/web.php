@@ -109,6 +109,11 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::post('/update/product' , 'updateProduct')->name('update.product'); 
             Route::post('/update/product/thambnail' , 'updateProductThambnail')->name('update.product.thambnail'); 
             Route::post('/update/product/multiimage' , 'updateProductMultiimage')->name('update.product.multiimage');
+            Route::get('/product/multiimg/delete/{id}' , 'mulitImageDelelte')->name('product.multiimg.delete');
+
+            Route::get('/product/inactive/{id}' , 'productInactive')->name('product.inactive');
+            Route::get('/product/active/{id}' , 'productActive')->name('product.active');
+            Route::get('/delete/product/{id}' , 'productDelete')->name('delete.product');
         });
 
 });
