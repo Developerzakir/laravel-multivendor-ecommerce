@@ -11,6 +11,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Controllers\VendorProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -140,6 +141,17 @@ Route::middleware(['auth','role:vendor'])->group(function(){
         Route::get('/vendor/change/password', 'vendorChangePassword')->name('vendor.change.password');
         Route::post('/vendor/update/password', 'vendorUpdatePassword')->name('vendor.update.password');
    });
+
+   // Vendor  Product  Route 
+    Route::controller(VendorProductController::class)->group(function(){
+        Route::get('/vendor/all/product' , 'vendorAllProduct')->name('vendor.all.product');
+        Route::get('/vendor/add/product' , 'vendorAddProduct')->name('vendor.add.product');
+        Route::post('/vendor/store/product' , 'vendorStoreProduct')->name('vendor.store.product');
+        Route::get('/vendor/subcategory/ajax/{category_id}' , 'vendorGetSubCategory');
+        
+    });
+
+
 });
 
 
