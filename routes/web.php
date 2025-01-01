@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProductController;
@@ -127,6 +128,11 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/edit/slider/{id}' , 'editSlider')->name('edit.slider');
             Route::post('/update/slider' , 'updateSlider')->name('update.slider');
             Route::get('/delete/slider/{id}' , 'deleteSlider')->name('delete.slider');
+        });
+
+         // Banner All Route 
+        Route::controller(BannerController::class)->group(function(){
+            Route::get('/all/banner' , 'allBanner')->name('all.banner');
         });
 
 }); //admin middleware end
