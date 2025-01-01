@@ -122,6 +122,11 @@ Route::middleware(['auth','role:admin'])->group(function(){
          // Slider All Route 
         Route::controller(SliderController::class)->group(function(){
             Route::get('/all/slider' , 'allSlider')->name('all.slider');
+            Route::get('/add/slider' , 'addSlider')->name('add.slider');
+            Route::post('/store/slider' , 'storeSlider')->name('store.slider');
+            Route::get('/edit/slider/{id}' , 'editSlider')->name('edit.slider');
+            Route::post('/update/slider' , 'updateSlider')->name('update.slider');
+            Route::get('/delete/slider/{id}' , 'deleteSlider')->name('delete.slider');
         });
 
 }); //admin middleware end
