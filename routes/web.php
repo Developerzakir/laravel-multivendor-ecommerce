@@ -147,6 +147,17 @@ Route::middleware(['auth','role:vendor'])->group(function(){
         Route::get('/vendor/all/product' , 'vendorAllProduct')->name('vendor.all.product');
         Route::get('/vendor/add/product' , 'vendorAddProduct')->name('vendor.add.product');
         Route::post('/vendor/store/product' , 'vendorStoreProduct')->name('vendor.store.product');
+        Route::get('/vendor/edit/product/{id}' , 'vendorEditProduct')->name('vendor.edit.product');
+        Route::post('/vendor/update/product' , 'vendorUpdateProduct')->name('vendor.update.product');
+
+        Route::post('/vendor/update/product/thambnail' , 'vendorUpdateProductThabnail')->name('vendor.update.product.thambnail');
+        Route::post('/vendor/update/product/multiimage' , 'vendorUpdateProductmultiImage')->name('vendor.update.product.multiimage');
+        Route::get('/vendor/product/multiimg/delete/{id}' , 'vendorMultiimgDelete')->name('vendor.product.multiimg.delete');
+
+        Route::get('/vendor/product/inactive/{id}' , 'vendorProductInactive')->name('vendor.product.inactive');
+        Route::get('/vendor/product/active/{id}' , 'vendorProductActive')->name('vendor.product.active');
+        Route::get('/vendor/delete/product/{id}' , 'vendorProductDelete')->name('vendor.delete.product');
+
         Route::get('/vendor/subcategory/ajax/{category_id}' , 'vendorGetSubCategory');
         
     });
