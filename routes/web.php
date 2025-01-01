@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -118,7 +119,12 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/delete/product/{id}' , 'productDelete')->name('delete.product');
         });
 
-});
+         // Slider All Route 
+        Route::controller(SliderController::class)->group(function(){
+            Route::get('/all/slider' , 'allSlider')->name('all.slider');
+        });
+
+}); //admin middleware end
 
 //admin login route
 Route::get('admin/login', [AdminController::class, 'adminLogin'])->middleware(RedirectIfAuthenticated::class);; 
