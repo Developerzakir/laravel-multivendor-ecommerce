@@ -9,7 +9,7 @@
 @include('front.inc.banner-category')
 <!--End banners-->
 @include('front.inc.product-tabs')
-<!--End Products Tabs-->
+<!--End New Products Tabs-->
 @include('front.inc.featured-products')
 <!--End Featured/Best Sales Products-->
 
