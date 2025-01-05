@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\VendorController;
@@ -141,6 +142,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
         });
 
 }); //admin middleware end
+
+Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 
 //admin login route
 Route::get('admin/login', [AdminController::class, 'adminLogin'])->middleware(RedirectIfAuthenticated::class);; 
