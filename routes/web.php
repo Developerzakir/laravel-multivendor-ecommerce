@@ -192,4 +192,4 @@ Route::middleware(['auth','role:vendor'])->group(function(){
 
 
 // Frontend Route all 
-Route::get('/', [FrontEndController::class,'index'])->name('front.index');
+Route::get('/', [IndexController::class,'index'])->name('front.index');
