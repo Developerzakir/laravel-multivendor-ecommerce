@@ -143,7 +143,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
 }); //admin middleware end
 
-Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+
 
 //admin login route
 Route::get('admin/login', [AdminController::class, 'adminLogin'])->middleware(RedirectIfAuthenticated::class);; 
@@ -192,4 +192,11 @@ Route::middleware(['auth','role:vendor'])->group(function(){
 
 
 // Frontend Route all 
-Route::get('/', [IndexController::class,'index'])->name('front.index');
+
+Route::controller(IndexController::class)->group(function(){
+    Route::get('/', 'index')->name('front.index');
+    Route::get('/product/details/{id}/{slug}',  'ProductDetails');
+    Route::get('/vendor/details/{id}', 'VendorDetails')->name('vendor.details');
+    Route::get('/vendor/all', 'VendorAll')->name('vendor.all');
+});
+

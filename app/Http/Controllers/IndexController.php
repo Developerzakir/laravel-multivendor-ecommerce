@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\MultiImg;
@@ -46,5 +47,18 @@ class IndexController extends Controller
         $relatedProduct = Product::where('category_id',$cat_id)->where('id','!=',$id)->orderBy('id','DESC')->limit(4)->get();
 
         return view('front.product.product_details',compact('product','product_color','product_size','multiImage','relatedProduct'));
+     } // End Method 
+
+     public function VendorDetails($id)
+     {
+        $vendor = User::findOrFail($id);
+        $vproduct = Product::where('vendor_id',$id)->get();
+        return view('front.vendor.vendor_details',compact('vendor','vproduct'));
+     } // End Method 
+
+     public function VendorAll()
+     {
+     $vendors = User::where('status','active')->where('role','vendor')->orderBy('id','DESC')->get();
+        return view('front.vendor.vendor_all',compact('vendors'));
      } // End Method 
 }
