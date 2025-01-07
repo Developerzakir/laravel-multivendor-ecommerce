@@ -198,5 +198,7 @@ Route::controller(IndexController::class)->group(function(){
     Route::get('/product/details/{id}/{slug}',  'ProductDetails');
     Route::get('/vendor/details/{id}', 'VendorDetails')->name('vendor.details');
     Route::get('/vendor/all', 'VendorAll')->name('vendor.all');
+    Route::get('/product/category/{id}/{slug}', 'CatWiseProduct');
+    Route::get('/product/subcategory/{id}/{slug}', 'SubCatWiseProduct');
 });
 
