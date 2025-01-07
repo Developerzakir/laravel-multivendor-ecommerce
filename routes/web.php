@@ -200,5 +200,8 @@ Route::controller(IndexController::class)->group(function(){
     Route::get('/vendor/all', 'VendorAll')->name('vendor.all');
     Route::get('/product/category/{id}/{slug}', 'CatWiseProduct');
     Route::get('/product/subcategory/{id}/{slug}', 'SubCatWiseProduct');
+
+    // Product View Modal With Ajax
+    Route::get('/product/view/modal/{id}','ProductViewAjax');
 });
 
