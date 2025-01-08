@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
@@ -204,4 +205,16 @@ Route::controller(IndexController::class)->group(function(){
     // Product View Modal With Ajax
     Route::get('/product/view/modal/{id}','ProductViewAjax');
 });
+
+Route::controller(CartController::class)->group(function(){
+    /// Add to cart store data
+    Route::post('/cart/data/store/{id}', 'AddToCart');
+    // Get Data from mini Cart
+    Route::get('/product/mini/cart', 'AddMiniCart');
+    Route::get('/minicart/product/remove/{rowId}', 'RemoveMiniCart');
+    /// Add to cart store data For Product Details Page 
+    Route::post('/dcart/data/store/{id}', 'AddToCartDetails');
+});
+
+
 

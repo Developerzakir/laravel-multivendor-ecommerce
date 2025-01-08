@@ -10,7 +10,7 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
             <h3> New Products </h3>
             <ul class="nav nav-tabs links" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="nav-tab-one" data-bs-toggle="tab" data-bs-target="#tab-one" type="button" role="tab" aria-controls="tab-one" aria-selected="true">All</button>
+                    <button class="nav-link active" id="nav-tab-one"  data-bs-toggle="tab" data-bs-target="#tab-one" type="button" role="tab" aria-controls="tab-one"  aria-selected="true">All</button>
                 </li>
 
                 @foreach($categories as $category)
@@ -91,6 +91,7 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
                                   
                                     <div class="add-cart">
                                         <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                       
                                     </div>
                                 </div>
                             </div>
