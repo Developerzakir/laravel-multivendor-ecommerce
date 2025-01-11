@@ -220,5 +220,15 @@ Route::controller(CartController::class)->group(function(){
 /// Add to Wishlist 
 Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToWishList']);
 
+// User All Route
+Route::middleware(['auth','role:user'])->group(function() {
+    // Wishlist All Route 
+   Route::controller(WishlistController::class)->group(function(){
+       Route::get('/wishlist' , 'AllWishlist')->name('wishlist');
+       Route::get('/get-wishlist-product' , 'GetWishlistProduct');
+       Route::get('/wishlist-remove/{id}' , 'WishlistRemove'); 
+   }); 
+}); // end group middleware
+
 
 
