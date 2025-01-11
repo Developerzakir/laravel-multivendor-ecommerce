@@ -216,6 +216,13 @@ Route::controller(CartController::class)->group(function(){
     Route::get('/minicart/product/remove/{rowId}', 'RemoveMiniCart');
     /// Add to cart store data For Product Details Page 
     Route::post('/dcart/data/store/{id}', 'AddToCartDetails');
+
+    Route::get('/mycart' , 'MyCart')->name('mycart');
+    Route::get('/get-cart-product' , 'GetCartProduct');
+    Route::get('/cart-remove/{rowId}' , 'CartRemove');
+
+    Route::get('/cart-increment/{rowId}' , 'CartIncrement');
+    Route::get('/cart-decrement/{rowId}' , 'CartDecrement');
 });
 
 /// Add to Wishlist 
