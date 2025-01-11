@@ -13,6 +13,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontEndController;
+use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\VendorProductController;
@@ -215,6 +216,9 @@ Route::controller(CartController::class)->group(function(){
     /// Add to cart store data For Product Details Page 
     Route::post('/dcart/data/store/{id}', 'AddToCartDetails');
 });
+
+/// Add to Wishlist 
+Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToWishList']);
 
 
 
