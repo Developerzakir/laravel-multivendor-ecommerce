@@ -14,6 +14,7 @@ use App\Http\Controllers\CompareController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\SubCategoryController;
@@ -270,6 +271,10 @@ Route::controller(CartController::class)->group(function(){
     Route::post('/coupon-apply','CouponApply');
     Route::get('/coupon-calculation', 'CouponCalculation');
     Route::get('/coupon-remove', 'CouponRemove');
+
+    // Checkout Page Route 
+    Route::get('/checkout', 'CheckoutCreate')->name('checkout');   
+    
 });
 
 /// Add to Wishlist 
@@ -290,7 +295,13 @@ Route::middleware(['auth','role:user'])->group(function() {
         Route::get('/compare-remove/{id}' , 'CompareRemove'); 
     }); 
 
-}); // end group middleware
+    Route::controller(CheckoutController::class)->group(function(){
+        Route::get('/district-get/ajax/{division_id}' , 'DistrictGetAjax');
+        Route::get('/state-get/ajax/{district_id}' , 'StateGetAjax');
+        Route::post('/checkout/store' , 'CheckoutStore')->name('checkout.store');
+    }); 
+
+}); // end user group middleware
 
 /// Add to Compare 
 Route::post('/add-to-compare/{product_id}', [CompareController::class, 'AddToCompare']);
