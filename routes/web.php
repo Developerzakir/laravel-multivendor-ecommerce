@@ -265,6 +265,11 @@ Route::controller(CartController::class)->group(function(){
 
     Route::get('/cart-increment/{rowId}' , 'CartIncrement');
     Route::get('/cart-decrement/{rowId}' , 'CartDecrement');
+
+    /// Frontend Coupon Option
+    Route::post('/coupon-apply','CouponApply');
+    Route::get('/coupon-calculation', 'CouponCalculation');
+    Route::get('/coupon-remove', 'CouponRemove');
 });
 
 /// Add to Wishlist 
