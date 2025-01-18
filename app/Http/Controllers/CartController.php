@@ -15,6 +15,10 @@ class CartController extends Controller
 {
     public function AddToCart(Request $request, $id){
 
+        if(Session::has('coupon')){
+            Session::forget('coupon');
+        }
+
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -65,6 +69,11 @@ class CartController extends Controller
     }// End Method
 
     public function AddToCartDetails(Request $request, $id){
+
+        if(Session::has('coupon')){
+            Session::forget('coupon');
+        }
+
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -114,6 +123,17 @@ class CartController extends Controller
 
     public function CartRemove($rowId){
         Cart::remove($rowId);
+        if(Session::has('coupon')){
+            $coupon_name = Session::get('coupon')['coupon_name'];
+            $coupon = Coupon::where('coupon_name',$coupon_name)->first();
+           
+           Session::put('coupon',[
+                'coupon_name' => $coupon->coupon_name, 
+                'coupon_discount' => $coupon->coupon_discount, 
+                'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100), 
+                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100 )
+            ]); 
+        }
         return response()->json(['success' => 'Successfully Remove From Cart']);
     }// End Method
 
@@ -155,24 +175,60 @@ class CartController extends Controller
         return response()->json('Decrement');
     }// End Method
 
+    // public function CouponApply(Request $request)
+    // {
+    //     $coupon = Coupon::where('coupon_name',$request->coupon_name)->where('coupon_validity','>=',Carbon::now()->format('Y-m-d'))->first();
+    //     if ($coupon) {
+    //         Session::put('coupon',[
+    //             'coupon_name' => $coupon->coupon_name, 
+    //             'coupon_discount' => $coupon->coupon_discount, 
+    //             'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100), 
+    //             'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100 )
+    //         ]);
+    //         return response()->json(array(
+    //             'validity' => true,                
+    //             'success' => 'Coupon Applied Successfully'
+    //         ));
+    //     } else{
+    //         return response()->json(['error' => 'Invalid Coupon']);
+    //     }
+    // }
+
+
     public function CouponApply(Request $request)
     {
-        $coupon = Coupon::where('coupon_name',$request->coupon_name)->where('coupon_validity','>=',Carbon::now()->format('Y-m-d'))->first();
+        $coupon = Coupon::where('coupon_name', $request->coupon_name)
+            ->where('coupon_validity', '>=', Carbon::now()->format('Y-m-d'))
+            ->first();
+
         if ($coupon) {
-            Session::put('coupon',[
-                'coupon_name' => $coupon->coupon_name, 
-                'coupon_discount' => $coupon->coupon_discount, 
-                'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100), 
-                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100 )
+            // Convert Cart::total() to a numeric value
+            $cartTotal = (float) str_replace(',', '', Cart::total());
+
+            // Calculate discount and new total
+            $discountAmount = round($cartTotal * ($coupon->coupon_discount / 100), 2); // Discount amount
+            $newTotal = round($cartTotal - $discountAmount, 2); // Grand total after discount
+
+            // Store coupon details in session
+            Session::put('coupon', [
+                'coupon_name' => $coupon->coupon_name,
+                'coupon_discount' => $coupon->coupon_discount,
+                'discount_amount' => $discountAmount,
+                'total_amount' => $newTotal,
             ]);
-            return response()->json(array(
-                'validity' => true,                
-                'success' => 'Coupon Applied Successfully'
-            ));
-        } else{
+
+            return response()->json([
+                'validity' => true,
+                'success' => 'Coupon Applied Successfully',
+            ]);
+        } else {
             return response()->json(['error' => 'Invalid Coupon']);
         }
-    }// End Method
+    }
+
+
+
+   
 
     public function CouponCalculation()
     {

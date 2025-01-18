@@ -9,6 +9,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\CompareController;
 use App\Http\Controllers\ProductController;
@@ -299,6 +300,13 @@ Route::middleware(['auth','role:user'])->group(function() {
         Route::get('/district-get/ajax/{division_id}' , 'DistrictGetAjax');
         Route::get('/state-get/ajax/{district_id}' , 'StateGetAjax');
         Route::post('/checkout/store' , 'CheckoutStore')->name('checkout.store');
+    }); 
+
+     // Stripe All Route 
+    Route::controller(StripeController::class)->group(function(){
+        Route::post('/stripe/order' , 'StripeOrder')->name('stripe.order');
+        
+    
     }); 
 
 }); // end user group middleware
