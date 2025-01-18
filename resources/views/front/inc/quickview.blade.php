@@ -48,7 +48,8 @@
                                                </div>
                                                <div class="product-extra-link2">
                                                 <input type="hidden" id="product_id">
-                                                <button type="submit" class="button button-add-to-cart" onclick="addToCart()"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                                <button type="submit" class="button button-add-to-cart" 
+                                                onclick="addToCart()"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
                                                </div>
                                            </div>
                                            <div class="row">
@@ -57,6 +58,7 @@
                                                <ul>
                                                 <li class="mb-5">Brand: <span class="text-brand" id="pbrand"> </span></li>
                                                 <li class="mb-5">Category:<span class="text-brand" id="pcategory"> </span></li>
+                                                <li class="mb-5">Vendor:<span class="text-brand" id="pvendor_id"> </span></li>
                                                </ul>
                                            </div>
                                                    
