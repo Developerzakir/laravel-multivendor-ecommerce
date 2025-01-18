@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\SliderController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\VendorOrderController;
 use App\Http\Controllers\ShippingAreaController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\VendorProductController;
@@ -188,6 +190,13 @@ Route::middleware(['auth','role:admin'])->group(function(){
            
         }); 
 
+         // Admin Order All Route 
+        Route::controller(OrderController::class)->group(function(){
+            Route::get('/pending/order' , 'PendingOrder')->name('pending.order');
+        
+        }); 
+
+
 }); //admin middleware end
 
 
@@ -203,8 +212,9 @@ Route::get('/vendor/login', [VendorController::class, 'vendorLogin'])->name('ven
 Route::get('/become/vendor', [VendorController::class, 'becomeVendor'])->name('become.vendor');
 Route::post('/vendor/register', [VendorController::class, 'vendorRegister'])->name('vendor.register');
 
-//Vendor Route
+//Vendor Group Route
 Route::middleware(['auth','role:vendor'])->group(function(){
+
     Route::controller(VendorController::class)->group(function () {
         Route::get('vendor/dashboard', 'vendorDashboard')->name('vendor.dashboard');
         Route::get('/vendor/logout', 'vendorDestroy')->name('vendor.logout');
@@ -234,8 +244,13 @@ Route::middleware(['auth','role:vendor'])->group(function(){
         
     });
 
+    Route::controller(VendorOrderController::class)->group(function(){
+        Route::get('/vendor/order' , 'VendorOrder')->name('vendor.order');
+    });
+    
 
-});
+
+}); //vendor middleware end
 
 
 // Frontend Route all 
@@ -305,7 +320,7 @@ Route::middleware(['auth','role:user'])->group(function() {
      // Stripe All Route 
     Route::controller(StripeController::class)->group(function(){
         Route::post('/stripe/order' , 'StripeOrder')->name('stripe.order');
-        
+
         Route::post('/cash/order' , 'CashOrder')->name('cash.order');
         
     
