@@ -60,8 +60,9 @@
                                                         <span class="badge rounded-pill bg-success">Deliverd</span>
                                                         @endif
                                                         </td>
-                                                        <td><a href="#" class="btn-sm btn-success"><i class="fa fa-eye"></i> View</a>
-                                                        <a href="{{ url('user/order_details/'.$order->id) }}" class="btn-sm btn-danger"><i class="fa fa-download"></i> Invoice</a>
+                                                        <td><a href="{{ url('user/order_details/'.$order->id) }}" class="btn-sm btn-success"><i class="fa fa-eye"></i> View</a>
+                                                        <a href="{{ url('user/invoice_download/'.$order->id) }}" class="btn-sm btn-danger"><i class="fa fa-download"></i> Invoice</a>
+                                                        
                                                         </td>
                                                     </tr>
                                                     @endforeach
