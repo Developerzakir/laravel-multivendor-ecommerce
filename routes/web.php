@@ -9,6 +9,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\ReturnController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\VendorController;
@@ -207,6 +208,14 @@ Route::middleware(['auth','role:admin'])->group(function(){
         }); 
 
 
+         // Return Order All Route 
+        Route::controller(ReturnController::class)->group(function(){
+            Route::get('/return/request' , 'ReturnRequest')->name('return.request');
+            Route::get('/return/request/approved/{order_id}' , 'ReturnRequestApproved')->name('return.request.approved');
+            Route::get('/complete/return/request' , 'CompleteReturnRequest')->name('complete.return.request');
+        });
+
+
 }); //admin middleware end
 
 
@@ -339,7 +348,10 @@ Route::middleware(['auth','role:user'])->group(function() {
         Route::get('/user/change/password' , 'UserChangePassword')->name('user.change.password');
         Route::get('/user/order/page' , 'UserOrderPage')->name('user.order.page');
         Route::get('/user/order_details/{order_id}' , 'UserOrderDetails');
-        Route::get('/user/invoice_download/{order_id}' , 'UserOrderInvoice');  
+        Route::get('/user/invoice_download/{order_id}' , 'UserOrderInvoice'); 
+
+        Route::post('/return/order/{order_id}' , 'ReturnOrder')->name('return.order');
+        Route::get('/return/order/page' , 'ReturnOrderPage')->name('return.order.page');
     }); 
 
 
