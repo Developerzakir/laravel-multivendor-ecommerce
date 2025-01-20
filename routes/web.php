@@ -12,6 +12,7 @@ use App\Http\Controllers\CouponController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\AllUserController;
 use App\Http\Controllers\CompareController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -320,11 +321,18 @@ Route::middleware(['auth','role:user'])->group(function() {
      // Stripe All Route 
     Route::controller(StripeController::class)->group(function(){
         Route::post('/stripe/order' , 'StripeOrder')->name('stripe.order');
-
-        Route::post('/cash/order' , 'CashOrder')->name('cash.order');
-        
-    
+        Route::post('/cash/order' , 'CashOrder')->name('cash.order');  
     }); 
+
+     // AllUser  Route 
+    Route::controller(AllUserController::class)->group(function(){
+        Route::get('/user/account/page' , 'UserAccount')->name('user.account.page'); 
+        Route::get('/user/change/password' , 'UserChangePassword')->name('user.change.password');
+        Route::get('/user/order/page' , 'UserOrderPage')->name('user.order.page');
+        Route::get('/user/order_details/{order_id}' , 'UserOrderDetails');
+    }); 
+
+
 
 }); // end user group middleware
 
