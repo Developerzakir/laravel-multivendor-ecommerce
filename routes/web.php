@@ -22,6 +22,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\ActiveUserController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\VendorOrderController;
 use App\Http\Controllers\ShippingAreaController;
@@ -225,6 +226,12 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
             Route::get('/order/by/user' , 'OrderByUser')->name('order.by.user');
             Route::post('/search/by/user' , 'SearchByUser')->name('search-by-user');
+        });
+
+         // Active user and vendor All Route 
+        Route::controller(ActiveUserController::class)->group(function(){
+            Route::get('/all/user' , 'AllUser')->name('all-user');
+            Route::get('/all/vendor' , 'AllVendor')->name('all-vendor');
         });
 
 
