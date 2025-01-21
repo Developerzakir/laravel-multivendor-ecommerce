@@ -12,6 +12,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReturnController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\VendorController;
@@ -254,6 +255,14 @@ Route::middleware(['auth','role:admin'])->group(function(){
         });
 
 
+        Route::controller(ReviewController::class)->group(function(){
+            Route::get('/pending/review' , 'PendingReview')->name('pending.review'); 
+            Route::get('/review/approve/{id}' , 'ReviewApprove')->name('review.approve'); 
+            Route::get('/publish/review' , 'PublishReview')->name('publish.review'); 
+            Route::get('/review/delete/{id}' , 'ReviewDelete')->name('review.delete');
+        });
+
+
 }); //admin middleware end
 
 
@@ -411,6 +420,12 @@ Route::controller(BlogController::class)->group(function(){
     Route::get('/blog' , 'AllBlog')->name('home.blog'); 
     Route::get('/post/details/{id}/{slug}' , 'BlogDetails');  
     Route::get('/post/category/{id}/{slug}' , 'BlogPostCategory');   
+});
+
+// Frontend Review Route 
+Route::controller(ReviewController::class)->group(function(){
+    Route::post('/store/review' , 'StoreReview')->name('store.review'); 
+    
 });
 
 
