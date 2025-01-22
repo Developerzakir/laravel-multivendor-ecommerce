@@ -1,4 +1,7 @@
 @extends('front.front_master')
+@section('title')
+   Vendor All Page 
+@endsection
 @section('front')
 <div class="page-header breadcrumb-wrap">
             <div class="container">

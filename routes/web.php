@@ -25,6 +25,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\ActiveUserController;
+use App\Http\Controllers\SiteSettingController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\VendorOrderController;
 use App\Http\Controllers\ShippingAreaController;
@@ -260,6 +261,16 @@ Route::middleware(['auth','role:admin'])->group(function(){
             Route::get('/review/approve/{id}' , 'ReviewApprove')->name('review.approve'); 
             Route::get('/publish/review' , 'PublishReview')->name('publish.review'); 
             Route::get('/review/delete/{id}' , 'ReviewDelete')->name('review.delete');
+        });
+
+        // Site Setting All Route 
+        Route::controller(SiteSettingController::class)->group(function(){
+            Route::get('/site/setting' , 'SiteSetting')->name('site.setting');
+            Route::post('/site/setting/update' , 'SiteSettingUpdate')->name('site.setting.update');
+
+            //seo all route
+            Route::get('/seo/setting' , 'SeoSetting')->name('seo.setting');
+            Route::post('/seo/setting/update' , 'SeoSettingUpdate')->name('seo.setting.update');  
         });
 
 

@@ -1,4 +1,7 @@
 @extends('front.front_master')
+@section('title')
+    Home BD Vendor Shop 
+@endsection
 
 @section('front')
 

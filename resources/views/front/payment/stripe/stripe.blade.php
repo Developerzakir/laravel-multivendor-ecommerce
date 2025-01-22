@@ -1,4 +1,7 @@
 @extends('front.front_master')
+@section('title')
+   Stripe Payment
+@endsection
 @section('front')
 
 <style>

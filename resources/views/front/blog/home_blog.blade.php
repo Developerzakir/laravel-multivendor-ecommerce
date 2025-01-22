@@ -1,4 +1,9 @@
 @extends('front.front_master')
+
+@section('title')
+   Blog Page 
+@endsection
+
 @section('front')
 <div class="page-header mt-30 mb-75">
             <div class="container">

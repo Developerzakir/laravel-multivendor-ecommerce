@@ -1,4 +1,7 @@
 @extends('front.front_master')
+@section('title')
+    {{ $breadsubcat->category->category_name }} >  {{ $breadsubcat->subcategory_name }} Subcategory
+@endsection
 @section('front')
  <div class="page-header mt-30 mb-50">
             <div class="container">

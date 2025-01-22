@@ -1,4 +1,7 @@
 @extends('front.front_master')
+@section('title')
+Cash Payment
+@endsection
 @section('front')
 <div class="page-header breadcrumb-wrap">
     <div class="container">

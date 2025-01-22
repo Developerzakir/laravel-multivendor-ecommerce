@@ -1,4 +1,7 @@
 @extends('front.front_master')
+@section('title')
+   Checkout Page 
+@endsection
 @section('front')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <div class="page-header breadcrumb-wrap">

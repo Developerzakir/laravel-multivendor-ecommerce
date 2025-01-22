@@ -1,4 +1,11 @@
 @extends('front.front_master')
+
+@section('title')
+   @foreach($breadcat as $cat)
+    {{ $cat->blog_category_name }}
+    @endforeach
+@endsection
+
 @section('front')
 <div class="page-header mt-30 mb-75">
             <div class="container">

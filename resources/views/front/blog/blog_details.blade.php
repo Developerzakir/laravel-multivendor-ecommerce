@@ -1,4 +1,9 @@
 @extends('front.front_master')
+
+@section('title')
+   {{ $blogdetails->post_title }}
+@endsection
+
 @section('front')
  <div class="page-header breadcrumb-wrap">
             <div class="container">

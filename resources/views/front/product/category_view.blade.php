@@ -1,4 +1,7 @@
 @extends('front.front_master')
+@section('title')
+   {{ $breadcat->category_name }} Category
+@endsection
 @section('front')
 
 <div class="page-header mt-30 mb-50">
