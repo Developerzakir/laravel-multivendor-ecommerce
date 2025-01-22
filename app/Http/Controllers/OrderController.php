@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -65,6 +67,15 @@ class OrderController extends Controller
 
       public function ProcessToDelivered($order_id)
       {
+
+        //product stock management start
+        $product = OrderItem::where('order_id',$order_id)->get();
+        foreach($product as $item){
+            Product::where('id',$item->product_id)
+                    ->update(['product_qty' => DB::raw('product_qty-'.$item->qty) ]);
+        } 
+        //product stock management end
+
         Order::findOrFail($order_id)->update(['status' => 'deliverd']);
         $notification = array(
             'message' => 'Order Deliverd Successfully',

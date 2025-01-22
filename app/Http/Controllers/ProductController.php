@@ -225,7 +225,14 @@ public function productInactive($id)
         'alert-type' => 'success'
     );
     return redirect()->back()->with($notification);
-}// End Method 
+ }  // End Method 
+
+ public function ProductStock()
+ {
+
+    $products = Product::latest()->get();
+    return view('admin.product.product_stock',compact('products'));
+ } // End Method 
 
 
 
