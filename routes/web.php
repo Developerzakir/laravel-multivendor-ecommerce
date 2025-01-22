@@ -357,7 +357,14 @@ Route::controller(IndexController::class)->group(function(){
 
     // Product View Modal With Ajax
     Route::get('/product/view/modal/{id}','ProductViewAjax');
+
+    // Product Search All Route 
+    Route::post('/search' , 'ProductSearch')->name('product.search'); 
+    Route::post('/search-product' , 'SearchProduct'); 
 });
+
+
+
 
 Route::controller(CartController::class)->group(function(){
     /// Add to cart store data
@@ -429,8 +436,6 @@ Route::middleware(['auth','role:user'])->group(function() {
         // Order Tracking 
        Route::get('/user/track/order' , 'UserTrackOrder')->name('user.track.order');
        Route::post('/order/tracking' , 'OrderTracking')->name('order.tracking');
-
-
 
     }); 
 
