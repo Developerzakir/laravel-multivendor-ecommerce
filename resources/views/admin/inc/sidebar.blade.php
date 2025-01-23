@@ -225,6 +225,8 @@
                         </li>
                     </ul>
                 </li>
+
+             
                     
 
         <li>
@@ -273,6 +275,27 @@
                  
             </ul>
         </li>
+
+        <li class="menu-label">Roles And Permission</li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Role & Permission</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('all.permission') }}"><i class="bx bx-right-arrow-alt"></i>All Permission</a></li>
+                <li> <a href="{{route('add.permission')}}"><i class="bx bx-right-arrow-alt"></i>Add Permission</a>
+                </li>
+                <li> <a href="{{ route('all.roles') }}"><i class="bx bx-right-arrow-alt"></i>All Roles</a>
+                </li>
+
+                <li> <a href="{{ route('add.roles.permission') }}"><i class="bx bx-right-arrow-alt"></i>Roles in Permission</a>
+                </li>
+                <li> <a href="{{ route('all.roles.permission') }}"><i class="bx bx-right-arrow-alt"></i>All Roles in Permission</a>
+                </li>
+            </ul>
+        </li><br><br><br><br>
 
       
       
