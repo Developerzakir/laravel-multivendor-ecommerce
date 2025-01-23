@@ -79,6 +79,15 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::post('/admin/profile/store', 'adminProfileStore')->name('admin.profile.store');
         Route::get('/admin/change/password', 'adminChangePassword')->name('admin.change.password');
         Route::post('/admin/update/password', 'AdminUpdatePassword')->name('admin.update.password');
+
+
+        //get all admin
+        Route::get('/all/admin' , 'AllAdmin')->name('all.admin');
+        Route::get('/add/admin' , 'AddAdmin')->name('add.admin');
+        Route::post('/admin/user/store' , 'AdminUserStore')->name('admin.user.store');
+        Route::get('/edit/admin/role/{id}' , 'EditAdminRole')->name('edit.admin.role');
+        Route::post('/admin/user/update/{id}' , 'AdminUserUpdate')->name('admin.user.update');
+        Route::get('/delete/admin/role/{id}' , 'DeleteAdminRole')->name('delete.admin.role');
     });
 
      // Brand All Route 

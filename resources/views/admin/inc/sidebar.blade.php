@@ -295,7 +295,22 @@
                 <li> <a href="{{ route('all.roles.permission') }}"><i class="bx bx-right-arrow-alt"></i>All Roles in Permission</a>
                 </li>
             </ul>
-        </li><br><br><br><br>
+        </li>
+
+
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"><i class="bx bx-line-chart"></i>
+                </div>
+                <div class="menu-title">Admin Manage </div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('all.admin') }}"><i class="bx bx-right-arrow-alt"></i>All Admin</a>
+                </li>
+                <li> <a href="{{ route('add.admin') }}"><i class="bx bx-right-arrow-alt"></i>Add Admin</a>
+                </li>
+            </ul>
+        </li><br><br>
 
       
       
