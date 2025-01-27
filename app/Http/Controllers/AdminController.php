@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\VendorApprovedNotification;
 
 
 class AdminController extends Controller
@@ -118,6 +120,8 @@ class AdminController extends Controller
             'message' => 'Vendor Active Successfully',
             'alert-type' => 'success'
         );
+        $user = User::where('role','vendor')->get();
+        Notification::send($user, new VendorApprovedNotification($request));
         return redirect()->route('active.vendor')->with($notification);
     }// End Mehtod 
 

@@ -198,10 +198,6 @@
 
 
 
-
-
-
-
     <div class="header-bottom header-bottom-bg-color sticky-bar">
         <div class="container">
             <div class="header-wrap header-space-between position-relative">
@@ -223,17 +219,21 @@
                             <div class="d-flex categori-dropdown-inner">
                                 <ul>
                                     @foreach($categories as $item)
+                                       @if($loop->index < 5)
                                         <li>
-                                            <a href="shop-grid-right.html"> <img src="{{ asset( $item->category_image ) }}" alt="" /> {{ $item->category_name }} </a>
+                                            <a href="{{ url('product/category/'.$item->id.'/'.$item->category_slug) }}"> <img src="{{ asset( $item->category_image ) }}" alt="" /> {{ $item->category_name }} </a>
                                         </li>
+                                       @endif
                                     @endforeach
                                     
                                 </ul>
                                 <ul class="end">
                                     @foreach($categories as $item)
+                                    @if($loop->index > 4)
                                     <li>
-                                        <a href="shop-grid-right.html"> <img src="{{ asset( $item->category_image ) }}" alt="" /> {{ $item->category_name }} </a>
+                                        <a href="{{ url('product/category/'.$item->id.'/'.$item->category_slug) }}"> <img src="{{ asset( $item->category_image ) }}" alt="" /> {{ $item->category_name }} </a>
                                     </li>
+                                    @endif
                                    @endforeach 
                                 </ul>
                             </div>

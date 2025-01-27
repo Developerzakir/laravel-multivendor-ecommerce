@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Notifications\VendorRegisterNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 
 class VendorController extends Controller
 {
@@ -93,6 +95,8 @@ class VendorController extends Controller
     } // End becomeVendor mehtod 
 
     public function vendorRegister(Request $request) {
+
+        $vendor_user = User::where('role','admin')->get();
         
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -113,6 +117,9 @@ class VendorController extends Controller
             'message' => 'Vendor Registered Successfully',
             'alert-type' => 'success'
         );
+
+        Notification::send($vendor_user, new VendorRegisterNotification($request));
+
         return redirect()->route('vendor.login')->with($notification);
        
     }// End Mehtod 
